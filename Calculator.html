@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 5px;
+            padding: 10px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 10px;
+        }
+
+        .screen {
+            grid-column: span 4;
+            height: 50px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 10px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="screen" id="screen"></div>
+        <button onclick="clearScreen()">C</button>
+        <button onclick="appendToScreen('7')">7</button>
+        <button onclick="appendToScreen('8')">8</button>
+        <button onclick="appendToScreen('9')">9</button>
+        <button onclick="appendToScreen('/')">/</button>
+        <button onclick="appendToScreen('4')">4</button>
+        <button onclick="appendToScreen('5')">5</button>
+        <button onclick="appendToScreen('6')">6</button>
+        <button onclick="appendToScreen('*')">*</button>
+        <button onclick="appendToScreen('1')">1</button>
+        <button onclick="appendToScreen('2')">2</button>
+        <button onclick="appendToScreen('3')">3</button>
+        <button onclick="appendToScreen('-')">-</button>
+        <button onclick="appendToScreen('0')">0</button>
+        <button onclick="appendToScreen('.')">.</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="appendToScreen('+')">+</button>
+    </div>
+
+    <script>
+        let expression = '';
+
+        function appendToScreen(value) {
+            expression += value;
+            document.getElementById('screen').innerText = expression;
+        }
+
+        function clearScreen() {
+            expression = '';
+            document.getElementById('screen').innerText = '';
+        }
+
+        function calculate() {
+            try {
+                const result = eval(expression);
+                document.getElementById('screen').innerText = result;
+                expression = '';
+            } catch (error) {
+                document.getElementById('screen').innerText = 'Error';
+                expression = '';
+            }
+        }
+    </script>
+</body>
+</html>
