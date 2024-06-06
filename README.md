@@ -1,1 +1,0 @@
-# CognoRise-Infotech
